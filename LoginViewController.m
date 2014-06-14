@@ -10,7 +10,12 @@
 
 @interface LoginViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *signInButton;
-- (IBAction)onBackgroundViewTap:(id)sender;
+@property (weak, nonatomic) IBOutlet UIView *loginTopView;
+@property (weak, nonatomic) IBOutlet UIButton *signUpButton;
+
+- (IBAction)onLoginBackgroundViewTap:(id)sender;
+- (void)willShowKeyboard:(NSNotification *)notification;
+- (void)willHideKeyboard:(NSNotification *)notification;
 
 @end
 
@@ -20,7 +25,9 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        // Register the methods for the keyboard hide/show events
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willShowKeyboard:) name:UIKeyboardWillShowNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willHideKeyboard:) name:UIKeyboardWillHideNotification object:nil];
     }
     return self;
 }
@@ -35,7 +42,6 @@
     self.signInButton.backgroundColor = [UIColor colorWithRed:0.310 green:0.396 blue:0.647 alpha:1];
     self.signInButton.layer.cornerRadius = 3;
     self.signInButton.layer.masksToBounds = YES;
-    // Do any additional setup after loading the view from its nib.
 }
 
 - (void)didReceiveMemoryWarning
@@ -48,7 +54,57 @@
     return UIStatusBarStyleLightContent;
 }
 
-- (IBAction)onBackgroundViewTap:(id)sender {
-        [self.view endEditing:YES];
+- (IBAction)onLoginBackgroundViewTap:(id)sender {
+    [self.view endEditing:YES];
 }
+
+- (void)willShowKeyboard:(NSNotification *)notification {
+    NSDictionary *userInfo = [notification userInfo];
+    
+    // Get the keyboard height and width from the notification
+    // Size varies depending on OS, language, orientation
+    CGSize kbSize = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    NSLog(@"Height: %f Width: %f", kbSize.height, kbSize.width);
+    
+    // Get the animation duration and curve from the notification
+    NSNumber *durationValue = userInfo[UIKeyboardAnimationDurationUserInfoKey];
+    NSTimeInterval animationDuration = durationValue.doubleValue;
+    NSNumber *curveValue = userInfo[UIKeyboardAnimationCurveUserInfoKey];
+    UIViewAnimationCurve animationCurve = curveValue.intValue;
+    
+    // Move the view with the same duration and animation curve so that it will match with the keyboard animation
+    [UIView animateWithDuration:animationDuration
+                          delay:0.0
+                        options:(animationCurve << 16)
+                     animations:^{
+                         self.loginTopView.frame = CGRectMake(0, 0, self.loginTopView.frame.size.width, self.loginTopView.frame.size.height);
+                         
+                         self.signUpButton.frame = CGRectMake(0, self.loginTopView.frame.size.height, self.signUpButton.frame.size.width, self.signUpButton.frame.size.height);
+                     }
+                     completion:nil];
+    
+}
+
+- (void)willHideKeyboard:(NSNotification *)notification {
+    NSDictionary *userInfo = [notification userInfo];
+    
+    // Get the animation duration and curve from the notification
+    NSNumber *durationValue = userInfo[UIKeyboardAnimationDurationUserInfoKey];
+    NSTimeInterval animationDuration = durationValue.doubleValue;
+    NSNumber *curveValue = userInfo[UIKeyboardAnimationCurveUserInfoKey];
+    UIViewAnimationCurve animationCurve = curveValue.intValue;
+    
+    // Move the view with the same duration and animation curve so that it will match with the keyboard animation
+    [UIView animateWithDuration:animationDuration
+                          delay:0.0
+                        options:(animationCurve << 16)
+                     animations:^{
+                         self.loginTopView.frame = CGRectMake(0, 100, self.loginTopView.frame.size.width, self.loginTopView.frame.size.height);
+                         
+                         //Put the sign up button back in its original position
+                         self.signUpButton.frame = CGRectMake(0, self.loginTopView.frame.size.height + self.loginTopView.frame.origin.y + 78, self.signUpButton.frame.size.width, self.signUpButton.frame.size.height);
+                     }
+                     completion:nil];
+}
+
 @end
