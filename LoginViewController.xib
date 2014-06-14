@@ -7,7 +7,9 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController">
             <connections>
                 <outlet property="SignUpButton" destination="Sco-PU-fuf" id="FdD-wO-iz6"/>
+                <outlet property="emailTextField" destination="ziC-4x-1JS" id="0pq-dJ-zIh"/>
                 <outlet property="loginTopView" destination="QHf-xD-HLV" id="8Bv-VS-auI"/>
+                <outlet property="passwordTextField" destination="TSf-Er-8FI" id="QLx-fM-gTD"/>
                 <outlet property="signInButton" destination="Mdn-dH-NOI" id="ESi-Xs-nH2"/>
                 <outlet property="signUpButton" destination="Sco-PU-fuf" id="eJX-fr-16w"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -36,6 +38,10 @@
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                            <connections>
+                                <action selector="onEmailValueChanged:" destination="-1" eventType="valueChanged" id="7ng-7y-RSJ"/>
+                                <action selector="onEmailValueChanged:" destination="-1" eventType="editingChanged" id="izF-dB-ZNg"/>
+                            </connections>
                         </textField>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TSf-Er-8FI">
                             <rect key="frame" x="32" y="183" width="264" height="41"/>
@@ -43,6 +49,10 @@
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES"/>
+                            <connections>
+                                <action selector="onPasswordValueChanged:" destination="-1" eventType="editingChanged" id="GWs-S9-CoQ"/>
+                                <action selector="onPasswordValueChanged:" destination="-1" eventType="valueChanged" id="hJ9-ug-HE2"/>
+                            </connections>
                         </textField>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mdn-dH-NOI">
                             <rect key="frame" x="16" y="238" width="287" height="47"/>
@@ -50,7 +60,14 @@
                             <state key="normal" title="Sign In">
                                 <color key="titleColor" red="0.98039221759999995" green="0.98039221759999995" blue="0.98039221759999995" alpha="1" colorSpace="deviceRGB"/>
                             </state>
-                            <state key="highlighted" backgroundImage="button-highlighted-bg"/>
+                            <state key="disabled" backgroundImage="button-disabled">
+                                <color key="titleColor" white="1" alpha="0.29999999999999999" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="highlighted" backgroundImage="button-highlighted"/>
+                            <connections>
+                                <action selector="onSignIn:" destination="-1" eventType="touchUpInside" id="tjj-Fb-AYp"/>
+                                <action selector="onSignInButton:" destination="-1" eventType="touchUpInside" id="6Jg-XD-r59"/>
+                            </connections>
                         </button>
                     </subviews>
                     <gestureRecognizers/>
@@ -62,7 +79,7 @@
                     <rect key="frame" x="0.0" y="463" width="320" height="45"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" title="Sign Up for Facebook">
-                        <color key="titleColor" red="0.98039221759999995" green="0.98039221759999995" blue="0.98039221759999995" alpha="1" colorSpace="deviceRGB"/>
+                        <color key="titleColor" white="1" alpha="0.75" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <state key="highlighted">
@@ -73,7 +90,7 @@
                     <rect key="frame" x="0.0" y="507" width="320" height="45"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" title="Help Center">
-                        <color key="titleColor" red="0.98039221759999995" green="0.98039221759999995" blue="0.98039221759999995" alpha="1" colorSpace="deviceRGB"/>
+                        <color key="titleColor" white="1" alpha="0.75" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <state key="highlighted">
@@ -92,7 +109,8 @@
         </tapGestureRecognizer>
     </objects>
     <resources>
-        <image name="button-highlighted-bg" width="5" height="5"/>
+        <image name="button-disabled" width="7" height="7"/>
+        <image name="button-highlighted" width="7" height="7"/>
         <image name="form_bg" width="295" height="95"/>
         <image name="loginFacebookLogo_ios7" width="168" height="34"/>
     </resources>

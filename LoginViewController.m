@@ -12,10 +12,19 @@
 @property (weak, nonatomic) IBOutlet UIButton *signInButton;
 @property (weak, nonatomic) IBOutlet UIView *loginTopView;
 @property (weak, nonatomic) IBOutlet UIButton *signUpButton;
+@property (weak, nonatomic) IBOutlet UITextField *emailTextField;
+@property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 
 - (IBAction)onLoginBackgroundViewTap:(id)sender;
+- (IBAction)onEmailValueChanged:(id)sender;
+- (IBAction)onPasswordValueChanged:(id)sender;
+- (IBAction)onSignInButton:(id)sender;
+
+
+
 - (void)willShowKeyboard:(NSNotification *)notification;
 - (void)willHideKeyboard:(NSNotification *)notification;
+- (void)validateForm;
 
 @end
 
@@ -34,6 +43,7 @@
 
 - (void)viewDidLoad
 {
+    NSLog(@"Hello");
     [super viewDidLoad];
     [self setNeedsStatusBarAppearanceUpdate];
     
@@ -42,6 +52,8 @@
     self.signInButton.backgroundColor = [UIColor colorWithRed:0.310 green:0.396 blue:0.647 alpha:1];
     self.signInButton.layer.cornerRadius = 3;
     self.signInButton.layer.masksToBounds = YES;
+    
+    [self validateForm];
 }
 
 - (void)didReceiveMemoryWarning
@@ -56,6 +68,36 @@
 
 - (IBAction)onLoginBackgroundViewTap:(id)sender {
     [self.view endEditing:YES];
+}
+
+- (IBAction)onEmailValueChanged:(id)sender {
+    
+    NSLog(@"Email changed");
+    
+    [self validateForm];
+}
+
+- (IBAction)onPasswordValueChanged:(id)sender {
+
+    NSLog(@"Password changed");
+    
+    [self validateForm];
+}
+
+- (IBAction)onSignInButton:(id)sender {
+    
+}
+
+- (void)validateForm {
+    if ((self.emailTextField.text.length > 0) && (self.passwordTextField.text.length > 0)) {
+        [self.signInButton setEnabled:YES];
+        NSLog(@"Yes, it's valid.");
+    }
+    else {
+        [self.signInButton setEnabled:NO];
+        NSLog(@"No, not valid.");
+    }
+    
 }
 
 - (void)willShowKeyboard:(NSNotification *)notification {
