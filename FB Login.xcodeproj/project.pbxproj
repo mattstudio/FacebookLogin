@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C93C98D4194D83C600F44E65 /* FeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C93C98D2194D83C600F44E65 /* FeedViewController.m */; };
+		C93C98D5194D83C600F44E65 /* FeedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C93C98D3194D83C600F44E65 /* FeedViewController.xib */; };
 		C9E0D196194ACFBC0060BB45 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E0D195194ACFBC0060BB45 /* Foundation.framework */; };
 		C9E0D198194ACFBC0060BB45 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E0D197194ACFBC0060BB45 /* CoreGraphics.framework */; };
 		C9E0D19A194ACFBC0060BB45 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E0D199194ACFBC0060BB45 /* UIKit.framework */; };
@@ -34,6 +36,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C93C98D1194D83C600F44E65 /* FeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedViewController.h; sourceTree = "<group>"; };
+		C93C98D2194D83C600F44E65 /* FeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedViewController.m; sourceTree = "<group>"; };
+		C93C98D3194D83C600F44E65 /* FeedViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedViewController.xib; sourceTree = "<group>"; };
 		C9E0D192194ACFBC0060BB45 /* FB Login.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FB Login.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9E0D195194ACFBC0060BB45 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C9E0D197194ACFBC0060BB45 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -155,6 +160,9 @@
 			children = (
 				C9E0D1C4194ACFE70060BB45 /* LoginViewController.h */,
 				C9E0D1C5194ACFE70060BB45 /* LoginViewController.m */,
+				C93C98D1194D83C600F44E65 /* FeedViewController.h */,
+				C93C98D2194D83C600F44E65 /* FeedViewController.m */,
+				C93C98D3194D83C600F44E65 /* FeedViewController.xib */,
 				C9E0D1C6194ACFE70060BB45 /* LoginViewController.xib */,
 			);
 			name = "View Controllers";
@@ -237,6 +245,7 @@
 			files = (
 				C9E0D1A0194ACFBC0060BB45 /* InfoPlist.strings in Resources */,
 				C9E0D1A8194ACFBC0060BB45 /* Images.xcassets in Resources */,
+				C93C98D5194D83C600F44E65 /* FeedViewController.xib in Resources */,
 				C9E0D1C8194ACFE70060BB45 /* LoginViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -258,6 +267,7 @@
 			files = (
 				C9E0D1A6194ACFBC0060BB45 /* AppDelegate.m in Sources */,
 				C9E0D1A2194ACFBC0060BB45 /* main.m in Sources */,
+				C93C98D4194D83C600F44E65 /* FeedViewController.m in Sources */,
 				C9E0D1C7194ACFE70060BB45 /* LoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -455,6 +465,7 @@
 				C9E0D1C0194ACFBC0060BB45 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C9E0D1C1194ACFBC0060BB45 /* Build configuration list for PBXNativeTarget "FB LoginTests" */ = {
 			isa = XCConfigurationList;
@@ -463,6 +474,7 @@
 				C9E0D1C3194ACFBC0060BB45 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

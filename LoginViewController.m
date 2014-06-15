@@ -7,6 +7,7 @@
 //
 
 #import "LoginViewController.h"
+#import "FeedViewController.h"
 
 @interface LoginViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *signInButton;
@@ -27,7 +28,6 @@
 - (void)willHideKeyboard:(NSNotification *)notification;
 - (void)validateForm;
 - (BOOL)checkCredentials:(NSArray *)credentials;
-- (void)doNothing;
 
 @end
 
@@ -46,7 +46,6 @@
 
 - (void)viewDidLoad
 {
-    NSLog(@"Hello");
     [super viewDidLoad];
     [self setNeedsStatusBarAppearanceUpdate];
     
@@ -65,30 +64,28 @@
     // Dispose of any resources that can be recreated.
 }
 
--(UIStatusBarStyle)preferredStatusBarStyle{
+-(UIStatusBarStyle)preferredStatusBarStyle
+{
     return UIStatusBarStyleLightContent;
 }
 
-- (IBAction)onLoginBackgroundViewTap:(id)sender {
+- (IBAction)onLoginBackgroundViewTap:(id)sender
+{
     [self.view endEditing:YES];
 }
 
-- (IBAction)onEmailValueChanged:(id)sender {
-    
-    NSLog(@"Email changed");
-    
+- (IBAction)onEmailValueChanged:(id)sender
+{
     [self validateForm];
 }
 
-- (IBAction)onPasswordValueChanged:(id)sender {
-
-    NSLog(@"Password changed");
-    
+- (IBAction)onPasswordValueChanged:(id)sender
+{
     [self validateForm];
 }
 
-- (IBAction)onSignInButton:(id)sender {
-    
+- (IBAction)onSignInButton:(id)sender
+{
     [self.signInActivityIndicator startAnimating];
     
     NSArray *credentials = [[NSArray alloc] initWithObjects:(NSString *)self.emailTextField.text, (NSString *)self.passwordTextField.text, nil];
@@ -96,34 +93,35 @@
     [self performSelector:@selector(checkCredentials:)
                withObject:credentials
                afterDelay:3];
-    
 }
 
 - (void)validateForm {
     if ((self.emailTextField.text.length > 0) && (self.passwordTextField.text.length > 0)) {
         [self.signInButton setEnabled:YES];
-        NSLog(@"Yes, it's valid.");
     }
     else {
         [self.signInButton setEnabled:NO];
-        NSLog(@"No, not valid.");
     }
 }
 
--(BOOL)checkCredentials:(NSArray *)credentials{
-    
-    //Put code here to communicate with the server
-    [self performSelector:@selector(doNothing) withObject:nil afterDelay:2];
-    
+-(BOOL)checkCredentials:(NSArray *)credentials
+{
     NSString *email = [credentials objectAtIndex:0];
     NSString *password = [credentials objectAtIndex:1];
     
     if ([password isEqualToString:@"password"]) {
-        NSLog(@"Correct Password");
+        NSLog(@"Correct password for %@",email);
+        
+        FeedViewController *vc = [[FeedViewController alloc] init];
+        vc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve; // Rises from below
+        
+        [self presentViewController:vc animated:YES completion:nil];
+        
         return YES;
     }
     else {
         [self.signInActivityIndicator stopAnimating];
+        self.passwordTextField.text = @"";
 
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Incorrect Password" message:@"This password you entered is incorrect. Please try again" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
         [alertView show];
@@ -133,11 +131,8 @@
     }
 }
 
--(void)doNothing{
-    //used to demonstrate server response
-}
-
-- (void)willShowKeyboard:(NSNotification *)notification {
+- (void)willShowKeyboard:(NSNotification *)notification
+{
     NSDictionary *userInfo = [notification userInfo];
     
     // Get the keyboard height and width from the notification
@@ -164,7 +159,8 @@
     
 }
 
-- (void)willHideKeyboard:(NSNotification *)notification {
+- (void)willHideKeyboard:(NSNotification *)notification
+{
     NSDictionary *userInfo = [notification userInfo];
     
     // Get the animation duration and curve from the notification
