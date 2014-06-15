@@ -10,6 +10,7 @@
                 <outlet property="emailTextField" destination="ziC-4x-1JS" id="0pq-dJ-zIh"/>
                 <outlet property="loginTopView" destination="QHf-xD-HLV" id="8Bv-VS-auI"/>
                 <outlet property="passwordTextField" destination="TSf-Er-8FI" id="QLx-fM-gTD"/>
+                <outlet property="signInActivityIndicator" destination="uor-Sf-skb" id="bC5-g0-Lba"/>
                 <outlet property="signInButton" destination="Mdn-dH-NOI" id="ESi-Xs-nH2"/>
                 <outlet property="signUpButton" destination="Sco-PU-fuf" id="eJX-fr-16w"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -65,10 +66,13 @@
                             </state>
                             <state key="highlighted" backgroundImage="button-highlighted"/>
                             <connections>
-                                <action selector="onSignIn:" destination="-1" eventType="touchUpInside" id="tjj-Fb-AYp"/>
                                 <action selector="onSignInButton:" destination="-1" eventType="touchUpInside" id="6Jg-XD-r59"/>
                             </connections>
                         </button>
+                        <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="uor-Sf-skb">
+                            <rect key="frame" x="261" y="252" width="20" height="20"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </activityIndicatorView>
                     </subviews>
                     <gestureRecognizers/>
                     <connections>

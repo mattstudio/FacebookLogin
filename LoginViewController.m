@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *signUpButton;
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *signInActivityIndicator;
 
 - (IBAction)onLoginBackgroundViewTap:(id)sender;
 - (IBAction)onEmailValueChanged:(id)sender;
@@ -25,6 +26,8 @@
 - (void)willShowKeyboard:(NSNotification *)notification;
 - (void)willHideKeyboard:(NSNotification *)notification;
 - (void)validateForm;
+- (BOOL)checkCredentials:(NSArray *)credentials;
+- (void)doNothing;
 
 @end
 
@@ -86,6 +89,14 @@
 
 - (IBAction)onSignInButton:(id)sender {
     
+    [self.signInActivityIndicator startAnimating];
+    
+    NSArray *credentials = [[NSArray alloc] initWithObjects:(NSString *)self.emailTextField.text, (NSString *)self.passwordTextField.text, nil];
+    
+    [self performSelector:@selector(checkCredentials:)
+               withObject:credentials
+               afterDelay:3];
+    
 }
 
 - (void)validateForm {
@@ -97,7 +108,33 @@
         [self.signInButton setEnabled:NO];
         NSLog(@"No, not valid.");
     }
+}
+
+-(BOOL)checkCredentials:(NSArray *)credentials{
     
+    //Put code here to communicate with the server
+    [self performSelector:@selector(doNothing) withObject:nil afterDelay:2];
+    
+    NSString *email = [credentials objectAtIndex:0];
+    NSString *password = [credentials objectAtIndex:1];
+    
+    if ([password isEqualToString:@"password"]) {
+        NSLog(@"Correct Password");
+        return YES;
+    }
+    else {
+        [self.signInActivityIndicator stopAnimating];
+
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Incorrect Password" message:@"This password you entered is incorrect. Please try again" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+        [alertView show];
+        
+        NSLog(@"Wrong Password");
+        return NO;
+    }
+}
+
+-(void)doNothing{
+    //used to demonstrate server response
 }
 
 - (void)willShowKeyboard:(NSNotification *)notification {
