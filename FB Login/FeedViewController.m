@@ -9,6 +9,10 @@
 #import "FeedViewController.h"
 
 @interface FeedViewController ()
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *feedActivityIndicator;
+
+- (UIStatusBarStyle)preferredStatusBarStyle;
+- (void)loadFeed;
 
 @end
 
@@ -39,6 +43,26 @@
     UIImage *rightButtonImage = [[UIImage imageNamed:@"nav_divebarglyph"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithImage:rightButtonImage style:UIBarButtonItemStylePlain target:self action:@selector(onRightButton:)];
     self.navigationItem.rightBarButtonItem = rightButton;
+
+    [self.feedActivityIndicator startAnimating];
+    [self performSelector:@selector(loadFeed) withObject:nil afterDelay:2];
+}
+
+- (void)loadFeed
+{
+    UIScrollView *feedScrollview = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
+    UIImageView *feedImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"feed-1"]];
+    feedImageView.frame = CGRectMake(0, 0, 320, 1455);
+    
+    [feedScrollview addSubview:feedImageView];
+    feedScrollview.contentSize = feedImageView.frame.size;
+    feedScrollview.minimumZoomScale = 1;
+    feedScrollview.maximumZoomScale = 1;
+    [feedScrollview setZoomScale:feedScrollview.minimumZoomScale];
+    feedScrollview.delegate = self;
+    [self.view addSubview:feedScrollview];
+    
+    [self.feedActivityIndicator stopAnimating];
 }
 
 - (void)didReceiveMemoryWarning
@@ -57,7 +81,8 @@
     NSLog(@"Right button pressed.");
 }
 
-- (UIStatusBarStyle)preferredStatusBarStyle {
+-(UIStatusBarStyle)preferredStatusBarStyle
+{
     return UIStatusBarStyleLightContent;
 }
 

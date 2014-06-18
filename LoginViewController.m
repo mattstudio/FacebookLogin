@@ -115,8 +115,6 @@
         UINavigationController *feedNavigationController = [[UINavigationController alloc] initWithRootViewController:vc];
         feedNavigationController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
         
-        [self setNeedsStatusBarAppearanceUpdate];
-        
         [self presentViewController:feedNavigationController animated:YES completion:nil];
         
         return YES;
