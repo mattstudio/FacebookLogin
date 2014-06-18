@@ -19,10 +19,38 @@
                     <rect key="frame" x="150" y="229" width="20" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </activityIndicatorView>
+                <tabBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SPA-N1-HY8">
+                    <rect key="frame" x="0.0" y="519" width="320" height="49"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <items>
+                        <tabBarItem title="News Feed" image="ios7_tabbar_feedicon_normal" id="klu-36-IMH">
+                            <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-6"/>
+                        </tabBarItem>
+                        <tabBarItem title="Requests" image="ios7_tabbar_requestsicon_normal" id="l73-0Q-Be7">
+                            <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-6"/>
+                        </tabBarItem>
+                        <tabBarItem title="Messages" image="ios7_tabbar_messagesicon_normal" id="nPW-nz-pOS">
+                            <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-6"/>
+                        </tabBarItem>
+                        <tabBarItem title="Notifications" image="ios7_tabbar_notificationsicon_normal" id="nE3-Da-o7n">
+                            <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-6"/>
+                        </tabBarItem>
+                        <tabBarItem title="More" image="ios7_tabbar_moreicon_normal" id="1jm-sr-lJs">
+                            <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-6"/>
+                        </tabBarItem>
+                    </items>
+                </tabBar>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>
+    <resources>
+        <image name="ios7_tabbar_feedicon_normal" width="32" height="30"/>
+        <image name="ios7_tabbar_messagesicon_normal" width="32" height="30"/>
+        <image name="ios7_tabbar_moreicon_normal" width="32" height="30"/>
+        <image name="ios7_tabbar_notificationsicon_normal" width="32" height="30"/>
+        <image name="ios7_tabbar_requestsicon_normal" width="32" height="30"/>
+    </resources>
 </document>
