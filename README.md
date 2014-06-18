@@ -3,6 +3,8 @@ Facebook Login
 
 A basic login for an app.
 
+<img src="http://mattmitchellcreative.com/other/ios/facebook/facebooklogin.gif" alt="Facebook Login App">
+
 ##Requirements:
 ###Facebook login page
 - ✅ Tapping in the UITextField repositions the elements, as shown in the screenshots.
@@ -15,8 +17,8 @@ A basic login for an app.
 
 ###Facebook feed
 - ✅ Navigation bar should have the search button and messages button.
-- Immediately after launch, display the loading indicator.
-- After 2 seconds, show the feed, which is a long image in a scrollable view.
+- ✅ Immediately after launch, display the loading indicator.
+- ✅ After 2 seconds, show the feed, which is a long image in a scrollable view.
 - Tapping the status button should show the compose view w/ the keyboard (optional)
 - Tapping a profile picture should push a profile page (optional)
 
