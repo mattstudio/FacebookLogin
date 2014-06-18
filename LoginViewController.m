@@ -22,12 +22,11 @@
 - (IBAction)onPasswordValueChanged:(id)sender;
 - (IBAction)onSignInButton:(id)sender;
 
-
-
 - (void)willShowKeyboard:(NSNotification *)notification;
 - (void)willHideKeyboard:(NSNotification *)notification;
 - (void)validateForm;
 - (BOOL)checkCredentials:(NSArray *)credentials;
+- (UIStatusBarStyle)preferredStatusBarStyle;
 
 @end
 
@@ -113,9 +112,12 @@
         NSLog(@"Correct password for %@",email);
         
         FeedViewController *vc = [[FeedViewController alloc] init];
-        vc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve; // Rises from below
+        UINavigationController *feedNavigationController = [[UINavigationController alloc] initWithRootViewController:vc];
+        feedNavigationController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
         
-        [self presentViewController:vc animated:YES completion:nil];
+        [self setNeedsStatusBarAppearanceUpdate];
+        
+        [self presentViewController:feedNavigationController animated:YES completion:nil];
         
         return YES;
     }
