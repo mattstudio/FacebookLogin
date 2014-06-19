@@ -31,10 +31,13 @@
 {
     [super viewDidLoad];
     [self setNeedsStatusBarAppearanceUpdate];
+    self.view.backgroundColor = [UIColor colorWithRed:0.827 green:0.839 blue:0.859 alpha:1];
     
-    [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName, [UIFont fontWithName:@"Helvetica Neue Bold" size:14], NSFontAttributeName, nil]];
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.310 green:0.396 blue:0.647 alpha:1];
     self.navigationController.navigationBar.translucent = NO;
+    
+    self.navigationItem.title = @"Feed View";
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     
     UIImage *leftButtonImage = [[UIImage imageNamed:@"nav_searchicon"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithImage:leftButtonImage style:UIBarButtonItemStylePlain target:self action:@selector(onLeftButton:)];
@@ -54,6 +57,7 @@
     UIImageView *feedImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"feed-1"]];
     feedImageView.frame = CGRectMake(0, 0, 320, 1455);
     
+    feedScrollview.backgroundColor = [UIColor colorWithRed:0.827 green:0.839 blue:0.859 alpha:1];
     [feedScrollview addSubview:feedImageView];
     feedScrollview.contentSize = feedImageView.frame.size;
     feedScrollview.minimumZoomScale = 1;
